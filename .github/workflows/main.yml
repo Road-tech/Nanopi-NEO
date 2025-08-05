@@ -43,7 +43,7 @@ jobs:
     - name: Download source code
       run: |
         git clone --depth=1 --branch=main https://github.com/armbian/build
-        git clone --depth=1 --branch=main https://github.com/Road-tech/armbian-build.git build
+        #git clone --depth=1 --branch=main https://github.com/Road-tech/armbian-build.git build
         
     - name: Parepre Armbian Env
       run: |
