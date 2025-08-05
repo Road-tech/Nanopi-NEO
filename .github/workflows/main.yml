@@ -18,6 +18,7 @@ env:
   OUTPUT_DIR: /tmp/images
   IMAGE_FILENAME: ${{ inputs.set_board }}_image
   CUSTOMIZATIOM_SCRIPT: userpatches/customize-image.sh
+  OTG_PATCH: userpatches/kernel/archive/sunxi-6.6/fix-nanopiduo2-otg-serial.patch
   #KERNEL_CONFIG: config
   UPLOAD_RELEASE: true
 
@@ -42,11 +43,12 @@ jobs:
     - name: Download source code
       run: |
         git clone --depth=1 --branch=main https://github.com/armbian/build
-        # git clone --depth=1 --branch=main https://github.com/Road-tech/armbian-build.git build
+        git clone --depth=1 --branch=main https://github.com/Road-tech/armbian-build.git build
         
     - name: Parepre Armbian Env
       run: |
         cd build
+        [ -e $OTG_PATCH ] && mv -f $GITHUB_WORKSPACE/$OTG_PATCH $OTG_PATCH
         ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=bookworm
    
     - name: Add customize-image.sh
@@ -54,9 +56,9 @@ jobs:
       run: |
         mkdir -p "${OUTPUT_DIR}"
         cd build
-        echo "cp userpatches/customize-image.sh and compile"
-        [ -e $CUSTOMIZATIOM_SCRIPT ] && mv -f $GITHUB_WORKSPACE/$CUSTOMIZATIOM_SCRIPT userpatches/customize-image.sh
-        ./compile.sh build BOARD=${{ inputs.set_board }} BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=jammy BUILD_DESKTOP=no
+        # echo "cp userpatches/customize-image.sh and compile"
+        #[ -e $CUSTOMIZATIOM_SCRIPT ] && mv -f $GITHUB_WORKSPACE/$CUSTOMIZATIOM_SCRIPT userpatches/customize-image.sh
+        #./compile.sh build BOARD=${{ inputs.set_board }} BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=jammy BUILD_DESKTOP=no
         cd  output/images
         tar -Jcvf "${OUTPUT_DIR}/${IMAGE_FILENAME}.tar.xz"  *.img    
         #tar -vczf /tmp/nanopi_neo_image.tar.gz *.img  
