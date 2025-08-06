@@ -50,7 +50,7 @@ jobs:
       run: |
         cd build
         [ -e $OTG_PATCH ] && mv -f $GITHUB_WORKSPACE/$OTG_PATCH $OTG_PATCH
-        ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=yes RELEASE=noble
+        ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=noble
    
     - name: Add customize-image.sh
       id: build
