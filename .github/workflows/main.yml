@@ -18,7 +18,7 @@ env:
   OUTPUT_DIR: /tmp/images
   IMAGE_FILENAME: ${{ inputs.set_board }}_image
   CUSTOMIZATIOM_SCRIPT: userpatches/customize-image.sh
-  KERNEL_VERSIOM: userpatches/lib.config
+  KERNEL_VERSION: userpatches/lib.config
   UPLOAD_RELEASE: true
 
 jobs:
@@ -48,8 +48,9 @@ jobs:
     - name: Parepre Armbian Env
       run: |
         cd build && mkdir userpatches
-        [ -e $KERNEL_VERSIOM ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSIOM $KERNEL_VERSIOM
+        [ -e $KERNEL_VERSION ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSION userpatches/lib.config
         echo  
+        cd userpatches && ls && cd ..
         cat userpatches/lib.config
         echo
         ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=noble
