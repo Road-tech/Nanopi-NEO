@@ -51,7 +51,7 @@ jobs:
         ls
         #[ -e $KERNEL_VERSION ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSION userpatches/lib.config
         echo  
-        echo $KERNEL_VERSION
+        touch userpatches/lib.config
         echo $KERNEL_VERSION > userpatches/lib.config
         cat userpatches/lib.config
         echo
