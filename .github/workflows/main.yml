@@ -50,7 +50,7 @@ jobs:
         cd build && mkdir userpatches
         #[ -e $KERNEL_VERSION ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSION userpatches/lib.config
         touch userpatches/lib.config && echo $KERNEL_VERSION > userpatches/lib.config
-        ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=noble
+        ./compile.sh build BOARD=${{ inputs.set_board }} BRANCH=legacy BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=jammye
    
     - name: Add customize-image.sh
       id: build
