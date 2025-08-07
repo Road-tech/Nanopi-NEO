@@ -50,7 +50,9 @@ jobs:
       run: |
         cd build
         [ -e $KERNEL_VERSIOM ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSIOM $KERNEL_VERSIOM
-        
+        echo  
+        cat userpatches/lib.config
+        echo
         ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=noble
    
     - name: Add customize-image.sh
