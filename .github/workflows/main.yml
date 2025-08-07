@@ -48,7 +48,8 @@ jobs:
     - name: Parepre Armbian Env
       run: |
         cd build
-        [ -e $KERNEL_VERSION ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSION userpatches/lib.config
+        ls
+        #[ -e $KERNEL_VERSION ] && mv -f $GITHUB_WORKSPACE/$KERNEL_VERSION userpatches/lib.config
         echo  
         echo $KERNEL_VERSION
         echo $KERNEL_VERSION > userpatches/lib.config
