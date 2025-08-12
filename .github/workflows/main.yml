@@ -18,7 +18,7 @@ env:
   OUTPUT_DIR: /tmp/images
   IMAGE_FILENAME: ${{ inputs.set_board }}_image
   CUSTOMIZATIOM_SCRIPT: userpatches/customize-image.sh
-  OTG_PATCH: userpatches/kernel/archive/sunxi-6.6/fix-nanopiduo2-otg-serial.patch
+  OTG_PATCH: userpatches/kernel/archive/sunxi-6.6
   #KERNEL_CONFIG: config
   UPLOAD_RELEASE: true
 
