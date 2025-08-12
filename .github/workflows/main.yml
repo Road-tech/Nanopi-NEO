@@ -49,9 +49,9 @@ jobs:
     - name: Parepre Armbian Env
       run: |
         cd build && mkdir -p userpatches/kernel/archive/sunxi-6.6
-        [ -e $OTG_PATCH ] && mv -f $GITHUB_WORKSPACE/$OTG_PATCH $GITHUB_WORKSPACE/build/$OTG_PATCH
+        [ -e $OTG_PATCH ] && cp "$GITHUB_WORKSPACE/$OTG_PATCH" "$GITHUB_WORKSPACE/build/$OTG_PATCH"
         cd userpatches/kernel/archive/sunxi-6.6 && ls && cd -
-        cat $OTG_PATCH
+        cat "$GITHUB_WORKSPACE/build/$OTG_PATCH"
         ./compile.sh build BOARD=${{ inputs.set_board }} BRANCH=legacy BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=jammy
    
     - name: Add customize-image.sh
