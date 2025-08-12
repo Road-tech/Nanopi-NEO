@@ -48,8 +48,10 @@ jobs:
         
     - name: Parepre Armbian Env
       run: |
-        cd build && mkdir -p userpatches/kernel/archive/sunxi-6.6/
-        [ -e $OTG_PATCH ] && mv -f $GITHUB_WORKSPACE/$OTG_PATCH $OTG_PATCH
+        cat $GITHUB_WORKSPACE/$OTG_PATCH
+        [ -e $OTG_PATCH ] && cp -r $GITHUB_WORKSPACE/$OTG_PATCH build/$OTG_PATCH
+        cd build
+        echo
         cat $OTG_PATCH
         ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=bookworm
    
