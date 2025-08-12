@@ -18,7 +18,7 @@ env:
   OUTPUT_DIR: /tmp/images
   IMAGE_FILENAME: ${{ inputs.set_board }}_image
   CUSTOMIZATIOM_SCRIPT: userpatches/customize-image.sh
-  OTG_PATCH: userpatches/kernel/archive/sunxi-6.6
+  OTG_PATCH: fix-nanopiduo2-otg-serial.patch
   #KERNEL_CONFIG: config
   UPLOAD_RELEASE: true
 
@@ -48,11 +48,11 @@ jobs:
         
     - name: Parepre Armbian Env
       run: |
-        cat $GITHUB_WORKSPACE/$OTG_PATCH
-        [ -e $OTG_PATCH ] && cp -r $GITHUB_WORKSPACE/$OTG_PATCH build/$OTG_PATCH
+        [ -e $OTG_PATCH ] && cat $GITHUB_WORKSPACE/userpatches/kernel/archive/sunxi-6.6/$OTG_PATCH
+        cp -r $GITHUB_WORKSPACE/userpatches/kernel/archive/sunxi-6.6 build/userpatches/kernel/archive/sunxi-6.6
         cd build
         echo
-        cat $OTG_PATCH
+        cat userpatches/kernel/archive/sunxi-6.6/$OTG_PATCH
         ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=bookworm
    
     - name: Add customize-image.sh
