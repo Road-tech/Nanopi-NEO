@@ -50,6 +50,8 @@ jobs:
       run: |
         cd build && mkdir -p userpatches/kernel/archive/sunxi-6.6
         [ -e $OTG_PATCH ] && cp $GITHUB_WORKSPACE/$OTG_PATCH $OTG_PATCH
+        $GITHUB_WORKSPACE/$OTG_PATCH $OTG_PATCH
+        echo
         cat $OTG_PATCH
         ./compile.sh build BOARD=nanopineo BRANCH=current BUILD_MINIMAL=no KERNEL_CONFIGURE=no RELEASE=bookworm
    
