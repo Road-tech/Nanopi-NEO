@@ -8,7 +8,7 @@ Subject: [PATCH] fix nanopi duo2 otg serial
  1 file changed, 4 deletions(-)
 
 diff --git a/arch/arm/boot/dts/allwinner/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/allwinner/sunxi-h3-h5.dtsi
-index ade1cd50e445..fef6f6de097b 100644
+index ade1cd50e44570..7df60515a90320 100644
 --- a/arch/arm/boot/dts/allwinner/sunxi-h3-h5.dtsi
 +++ b/arch/arm/boot/dts/allwinner/sunxi-h3-h5.dtsi
 @@ -302,8 +302,6 @@
@@ -29,3 +29,4 @@ index ade1cd50e445..fef6f6de097b 100644
                         status = "disabled";
                 };
                 
+---
